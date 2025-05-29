@@ -1,32 +1,38 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using GranShopAPI.Models;
 
-namespace GranShopAPI.Models
+namespace GranShopAPI.Data
 {
-    [Table("Produtos")]
+    [Table("Produto")]
     public class Produto
     {
         [Key]
         public int Id { get; set; }
-        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
 
-        [ForeignKey("Categoria")]
+        [Required]
         public int CategoriaId { get; set; }
+        [ForeignKey("CategoriaId")]
+        public Categoria Categoria { get; set; }
 
+        [Required]
         public string Nome { get; set; }
 
+        [Required]
         public string Descricao { get; set; }
 
+        [Required]
         public int Estoque { get; set; }
 
+        [Required]
+        [Column(TypeName = "Numeric(10,2)")]
         public decimal ValorCusto { get; set; }
 
+        [Required]
+        [Column(TypeName = "Numeric(10,2)")]
         public decimal ValorVenda { get; set; }
-        
-        public Boolean Destaque { get; set; }
+
+        [Required]
+        public bool Destaque { get; set; }
     }
 }
